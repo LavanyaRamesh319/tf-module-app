@@ -24,9 +24,7 @@ resource "aws_security_group" "sg" {
     cidr_blocks = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
-  tags = {
-    Name = "${var.name}-${var.env}-sg"
-  }
+  tags               = merge(var.tags, { Name = "${var.name}-alb-${var.env}" })
 }
 
 resource "aws_launch_template" "template" {
